@@ -32,4 +32,12 @@ describe("Test for Add method", () => {
     const sum = StringCalculator.Add("1\n2\n4");
     expect(sum).toBe(7);
   });
+  it("Should return correct sum with new custom separators", () => {
+    const sum = StringCalculator.Add(";\n1;2");
+    expect(sum).toBe(3);
+  });
+  it("Should return correct sum with new custom separators", () => {
+    const sum = StringCalculator.Add("$\n1$2");
+    expect(sum).toBe(3);
+  });
 });
