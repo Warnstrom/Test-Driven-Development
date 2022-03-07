@@ -24,20 +24,20 @@ describe("Test for Add method", () => {
     expect(sum).toBe(10);
   });
 
-  it("Should return 7 for add(1\n2,4) with newline separator", () => {
+  it("Should return 7 for add(1/n2,4) with newline separator", () => {
     const sum = StringCalculator.Add("1\n2,4");
     expect(sum).toBe(7);
   });
-  it("Should return 7 for add(1\n2\n4) with newline separator", () => {
+  it("Should return 7 for add(1/n2/n4) with newline separator", () => {
     const sum = StringCalculator.Add("1\n2\n4");
     expect(sum).toBe(7);
   });
-  it("Should return 3 for add(;\n1;2) with custom separators", () => {
-    const sum = StringCalculator.Add(";\n1;2");
+  it("Should return 3 for add(;/n1;2) with custom separators", () => {
+    const sum = StringCalculator.Add("//;\n1;2");
     expect(sum).toBe(3);
   });
-  it("Should return for add($\n1$2) with custom separators", () => {
-    const sum = StringCalculator.Add("$\n1$2");
+  it("Should return 3 for add($/n1$2) with custom separators", () => {
+    const sum = StringCalculator.Add("//$\n1$2");
     expect(sum).toBe(3);
   });
 });
