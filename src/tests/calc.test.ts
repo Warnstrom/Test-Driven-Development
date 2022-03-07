@@ -40,4 +40,8 @@ describe("Test for Add method", () => {
     const sum = StringCalculator.Add("//$\n1$2");
     expect(sum).toBe(3);
   });
+  it("String with negative numbers should throw exception", () => {
+    expect(() => StringCalculator.Add("1,-3")).toThrow("negatives not allowed: -3");
+    expect(() => StringCalculator.Add("1,-6,-2")).toThrow("negatives not allowed: -6, -2");
+  });
 });

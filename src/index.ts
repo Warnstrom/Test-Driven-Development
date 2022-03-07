@@ -34,4 +34,3 @@ export class StringCalculator {
     return numbers.slice(start, end);
   }
 }
-
