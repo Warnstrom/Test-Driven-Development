@@ -16,6 +16,10 @@ export class StringCalculator {
       console.log(delimiters);
       const numbers: number[] = numbersString.split(delimiters).map((x: string) => parseInt(x));
       numbers.shift();
+      const negatives = numbers.filter((x) => x < 0);
+      if (negatives.length) {
+        throw new Error(`negatives not allowed: ${negatives.join(", ")}`);
+      }
       const sum = numbers.reduce((a, b) => a + b);
       console.log(sum);
       return sum;
