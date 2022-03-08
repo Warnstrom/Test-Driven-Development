@@ -50,4 +50,12 @@ describe("Test for Add method", () => {
     const sum = StringCalculator.getCalledCount("add");
     expect(sum).toBe(11);
   });
+  it("Should return 10 for add(1,2,3,4,1001)", () => {
+    const sum = StringCalculator.Add("1,2,3,4,1001");
+    expect(sum).toBe(10);
+  });
+  it("Should return 1 for add(1,1001)", () => {
+    const sum = StringCalculator.Add("1,1001");
+    expect(sum).toBe(1);
+  });
 });
