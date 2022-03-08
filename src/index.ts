@@ -5,6 +5,7 @@ enum constants {
 }
 
 export class StringCalculator {
+  static calledCount: { [key: string]: number };
   static Add(numbersString: string): number {
     const validateCustomDelimiters: boolean = numbersString.startsWith(
       constants.CUSTOM_DELIMITER_BEGIN
@@ -20,6 +21,7 @@ export class StringCalculator {
         throw new Error(`negatives not allowed: ${negatives.join(", ")}`);
       } else {
         const sum = numbers.reduce((a: number, b: number) => a + b);
+        this.calledCount["add"] += 1;
         console.log(sum);
         return sum;
       }
@@ -30,9 +32,14 @@ export class StringCalculator {
         throw new Error(`negatives not allowed: ${negatives.join(", ")}`);
       } else {
         const sum = numbers.reduce((a, b) => a + b);
+        this.calledCount["add"] += 1;
         return sum;
       }
     }
+  }
+
+  static getCalledCount(functionName: string) {
+    return this.calledCount[functionName];
   }
   static getCustomDelimiters(numbers: string) {
     const start =
