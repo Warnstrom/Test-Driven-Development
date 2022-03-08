@@ -11,13 +11,11 @@ export class StringCalculator {
       constants.CUSTOM_DELIMITER_BEGIN
     );
     this.calledCount["add"] += 1;
-    console.log(this.calledCount)
     if (numbersString.length === 0) return 0;
     if (numbersString.length === 1) return parseInt(numbersString);
     if (validateCustomDelimiters) {
       const delimiters: string = this.getCustomDelimiters(numbersString);
-      const numbers: number[] = numbersString.split(delimiters).map((x: string) => parseInt(x));
-      numbers.shift();
+      const numbers: number[] = numbersString.split(delimiters).map((x: string) => parseInt(x)).filter((x: number) => x < 1000);
       const negatives = numbers.filter((x: number) => Math.sign(x) === -1);
       if (negatives.length) {
         throw new Error(`negatives not allowed: ${negatives.join(", ")}`);
@@ -27,7 +25,7 @@ export class StringCalculator {
         return sum;
       }
     } else {
-      const numbers: number[] = numbersString.split(/[\n,]/).map(Number);
+      const numbers: number[] = numbersString.split(/[\n,]/).map(Number).filter((x: number) => x < 1000);
       const negatives = numbers.filter((x: number) => Math.sign(x) === -1);
       if (negatives.length) {
         throw new Error(`negatives not allowed: ${negatives.join(", ")}`);
