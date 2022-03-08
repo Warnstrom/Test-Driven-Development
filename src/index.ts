@@ -13,22 +13,25 @@ export class StringCalculator {
     if (numbersString.length === 1) return parseInt(numbersString);
     if (validateCustomDelimiters) {
       const delimiters: string = this.getCustomDelimiters(numbersString);
-      console.log(delimiters);
       const numbers: number[] = numbersString.split(delimiters).map((x: string) => parseInt(x));
       numbers.shift();
-      const negatives = numbers.filter((x) => x < 0);
+      const negatives = numbers.filter((x) => x == 0 || x > 0);
       if (negatives.length) {
         throw new Error(`negatives not allowed: ${negatives.join(", ")}`);
+      } else {
+        const sum = numbers.reduce((a, b) => a + b);
+        console.log(sum);
+        return sum;
       }
-      const sum = numbers.reduce((a, b) => a + b);
-      console.log(sum);
-      return sum;
     } else {
-      const sum: number = numbersString
-        .split(/[\n,]/)
-        .map(Number)
-        .reduce((a, b) => a + b);
-      return sum;
+      const numbers: number[] = numbersString.split(/[\n,]/).map(Number);
+      const negatives = numbers.filter((x) => x == 0 || x > 0);
+      if (negatives.length) {
+        throw new Error(`negatives not allowed: ${negatives.join(", ")}`);
+      } else {
+        const sum = numbers.reduce((a, b) => a + b);
+        return sum;
+      }
     }
   }
   static getCustomDelimiters(numbers: string) {
@@ -38,3 +41,4 @@ export class StringCalculator {
     return numbers.slice(start, end);
   }
 }
+console.log(StringCalculator.Add("1,-2"));
