@@ -45,6 +45,5 @@ describe("Test for Add method", () => {
   });
   it("Should return exception for add(1,-6,-2) with negative numbers", () => {
     expect(() => StringCalculator.Add("1,-6,-2")).toThrow("negatives not allowed: -6, -2");
-
   });
 });

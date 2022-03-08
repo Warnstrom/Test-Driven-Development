@@ -15,17 +15,17 @@ export class StringCalculator {
       const delimiters: string = this.getCustomDelimiters(numbersString);
       const numbers: number[] = numbersString.split(delimiters).map((x: string) => parseInt(x));
       numbers.shift();
-      const negatives = numbers.filter((x) => x == 0 || x > 0);
+      const negatives = numbers.filter((x: number) => Math.sign(x) === -1);
       if (negatives.length) {
         throw new Error(`negatives not allowed: ${negatives.join(", ")}`);
       } else {
-        const sum = numbers.reduce((a, b) => a + b);
+        const sum = numbers.reduce((a: number, b: number) => a + b);
         console.log(sum);
         return sum;
       }
     } else {
       const numbers: number[] = numbersString.split(/[\n,]/).map(Number);
-      const negatives = numbers.filter((x) => x == 0 || x > 0);
+      const negatives = numbers.filter((x: number) => Math.sign(x) === -1);
       if (negatives.length) {
         throw new Error(`negatives not allowed: ${negatives.join(", ")}`);
       } else {
@@ -41,4 +41,3 @@ export class StringCalculator {
     return numbers.slice(start, end);
   }
 }
-console.log(StringCalculator.Add("1,-2"));
