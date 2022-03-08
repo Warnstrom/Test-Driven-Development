@@ -10,6 +10,8 @@ export class StringCalculator {
     const validateCustomDelimiters: boolean = numbersString.startsWith(
       constants.CUSTOM_DELIMITER_BEGIN
     );
+    this.calledCount["add"] += 1;
+    console.log(this.calledCount)
     if (numbersString.length === 0) return 0;
     if (numbersString.length === 1) return parseInt(numbersString);
     if (validateCustomDelimiters) {
@@ -21,7 +23,6 @@ export class StringCalculator {
         throw new Error(`negatives not allowed: ${negatives.join(", ")}`);
       } else {
         const sum = numbers.reduce((a: number, b: number) => a + b);
-        this.calledCount["add"] += 1;
         console.log(sum);
         return sum;
       }
@@ -32,7 +33,6 @@ export class StringCalculator {
         throw new Error(`negatives not allowed: ${negatives.join(", ")}`);
       } else {
         const sum = numbers.reduce((a, b) => a + b);
-        this.calledCount["add"] += 1;
         return sum;
       }
     }
