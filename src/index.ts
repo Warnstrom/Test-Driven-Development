@@ -51,5 +51,3 @@ export class StringCalculator {
     return numbers.slice(start, end);
   }
 }
-console.log(StringCalculator.Add("//$\n1$2"));
-console.log(StringCalculator.Add("//;\n1;2"));
