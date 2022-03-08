@@ -15,17 +15,22 @@ export class StringCalculator {
     if (numbersString.length === 1) return parseInt(numbersString);
     if (validateCustomDelimiters) {
       const delimiters: string = this.getCustomDelimiters(numbersString);
-      const numbers: number[] = numbersString.split(delimiters).map((x: string) => parseInt(x)).filter((x: number) => x < 1000);
+      const numbers: number[] = numbersString
+        .split(delimiters)
+        .map((x: string) => parseInt(x))
+        .filter((x: number) => x < constants.CUSTOM_NUMBER_LIMIT);
       const negatives = numbers.filter((x: number) => Math.sign(x) === -1);
       if (negatives.length) {
         throw new Error(`negatives not allowed: ${negatives.join(", ")}`);
       } else {
         const sum = numbers.reduce((a: number, b: number) => a + b);
-        console.log(sum);
         return sum;
       }
     } else {
-      const numbers: number[] = numbersString.split(/[\n,]/).map(Number).filter((x: number) => x < 1000);
+      const numbers: number[] = numbersString
+        .split(/[\n,]/)
+        .map(Number)
+        .filter((x: number) => x < constants.CUSTOM_NUMBER_LIMIT);
       const negatives = numbers.filter((x: number) => Math.sign(x) === -1);
       if (negatives.length) {
         throw new Error(`negatives not allowed: ${negatives.join(", ")}`);
@@ -46,3 +51,5 @@ export class StringCalculator {
     return numbers.slice(start, end);
   }
 }
+console.log(StringCalculator.Add("//$\n1$2"));
+console.log(StringCalculator.Add("//;\n1;2"));
