@@ -5,7 +5,7 @@ enum constants {
 }
 
 export class StringCalculator {
-  static calledCount: { [key: string]: number };
+  static calledCount: { [key: string]: number } = { add: 0 };
   static Add(numbersString: string): number {
     const validateCustomDelimiters: boolean = numbersString.startsWith(
       constants.CUSTOM_DELIMITER_BEGIN
