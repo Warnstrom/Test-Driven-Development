@@ -8,6 +8,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*", "uppgifter/calc.test.ts"],
+  "include": ["src/**/*", "tests/rover.test.ts"],
   "exclude": ["node_modules", "dist"]
 }
