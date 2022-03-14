@@ -30,20 +30,38 @@ export class MarsRover {
   }
   move(instructions: string): void {
     for (const command of [...instructions]) {
+      //console.log(this.getPosition(), this.getOrientation());
       if (!this.moveInstructions[command]()) {
         throw new Error("Something went wrong");
       }
     }
   }
   private forward(): boolean {
-    this.position["y"] =
-      this.currentOrientation === "N" && this.position["y"] === 4 ? 0 : (this.position["y"] += 1);
-    this.position["y"] =
-      this.currentOrientation === "S" && this.position["y"] === 0 ? 4 : this.position["y"]--;
-    this.position["x"] =
-      this.currentOrientation === "W" && this.position["x"] === 0 ? 4 : this.position["x"]--;
-    this.position["x"] =
-      this.currentOrientation === "E" && this.position["x"] === 4 ? 0 : this.position["x"]++;
+    if (this.currentOrientation === "N") {
+      if (this.position["y"] === 4) {
+        this.position["y"] = 0;
+      } else {
+        this.position["y"]++;
+      }
+    } else if (this.currentOrientation === "E") {
+      if (this.position["x"] === 4) {
+        this.position["x"] = 0;
+      } else {
+        this.position["x"]++;
+      }
+    } else if (this.currentOrientation === "S") {
+      if (this.position["y"] === 0) {
+        this.position["y"] = 4;
+      } else {
+        this.position["y"]--;
+      }
+    } else if (this.currentOrientation === "W") {
+      if (this.position["x"] === 0) {
+        this.position["x"] = 4;
+      } else {
+        this.position["x"]--;
+      }
+    }
     return true;
   }
   private back(): boolean {
@@ -90,3 +108,5 @@ export class MarsRover {
     return true;
   }
 }
+const rover: MarsRover = new MarsRover(0, 0, "N");
+rover.move("FFFFFFRRFFFFFFRFFFFFF");
