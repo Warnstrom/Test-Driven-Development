@@ -84,5 +84,4 @@ describe("Move rover LFFF", () => {
     expect(position_1.y).toBe(2);
     expect(direction_1).toBe("E");
   });
-  
 });

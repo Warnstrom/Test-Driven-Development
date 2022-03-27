@@ -1,4 +1,4 @@
-import { StringCalculator } from "..";
+import { StringCalculator } from "../index";
 
 describe("Test for Add method", () => {
   it("Should return 1 for add(1)", () => {
